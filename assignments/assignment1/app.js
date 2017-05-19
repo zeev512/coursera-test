@@ -2,35 +2,39 @@
     'use strict';
 
     angular.module('LunchCheck', [])
-        .controller('LunchCheckController', LunchCheckController);
+        .controller('LunchCheckController', ['$scope', LunchCheckController]);
 
-    LunchCheckController.$inject = ['$scope'];
-        function LunchCheckController($scope) {
-            var vm = this;
+    function LunchCheckController ($scope) {
+        $scope.items = "";
+        $scope.message = "";
 
-            list.addItem = function () {
-                shoppingList.addItem(list.itemName, list.itemQuantity);
-                list.title = origTitle + " (" + list.items.length + " items )";
-            };
-            $scope.checkItems = function() {
-                var lunchItems = $scope.items.split(' ');
-                if ( lunchItems < 4 ) {
-                    $scope.message = 'Enjoy!';
+        $scope.checkItems = function() {
+            var lunchItems = $scope.items.split(',');
+            if ( lunchItems.length == 0 || lunchItems.length == 1 ) {
+                var empty = true;
+                if (lunchItems.length == 1) {
+                    var item = lunchItems[0];
+                    if (item !== '')
+                        empty = false;
                 }
-                else if ( lunchItems > 0 ) {
-                    $scope.message = 'Too much!.';
-                }
-            };
+                if ( empty )
+                    $scope.message = 'Please enter data first';
+            }
+            else if ( lunchItems.length == 0 ) {
+                $scope.message = 'Please enter data first';
+            }
+            else if ( lunchItems.length < 4 ) {
+                $scope.message = 'Enjoy!';
+            }
+            else if ( lunchItems.length > 3 ) {
+                $scope.message = 'Too much!';
+            }
+        };
 
-            $scope.upper = function() {
-                var upCase = $filter('uppercase');
-                $scope.items = upCase($scope.items);
-            };
+        $scope.replyMessage = function() {
+            return $scope.message;
         }
+    }
 
-        function AnnotateMe(name, job, blah) {
-            return 'blah';
-        }
-
-        console.log(AnnotateMe());
 })();
+
