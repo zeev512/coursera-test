@@ -1,10 +1,16 @@
+<<<<<<< HEAD
 
 <!DOCTYPE html>
 <html ng-app="LunchCheck">
+=======
+<!DOCTYPE html>
+<html ng-app='LunchCheck'>
+>>>>>>> eac762081bf86b1461d6abb5caa9bd7e443f2880
     <head>
         <meta charset="utf-8">
         <script src="angular.min.js"></script>
         <script src="app.js"></script>
+<<<<<<< HEAD
         <link rel="stylesheet" href="styles.css">
         <title>Directives with Isolate scope and '&'</title>
     </head>
@@ -16,6 +22,18 @@
             <span>{{ message }}</span>
         </div>
         <div class="error" ng-if="tooMuch()">{{ message }}</div>
+=======
+        <title>Assignment 1</title>
+    </head>
+<body>
+    <h1>Assignment 1</h1>
+    <div ng-controller='LunchCheckController'>
+        <input type="text" ng-model="items" ng-blur="upper();">
+        <button ng-click="checkItems();">Check Items</button><br>
+        {{ replyMessage() }}
+    </div>
+    <div>{{ message }}</div>
+>>>>>>> eac762081bf86b1461d6abb5caa9bd7e443f2880
     </body>
 </html>
 
